@@ -10,6 +10,9 @@
 # the color of the points should be determined by the Species variable
 # the theme should be set to theme_minimal()
 # the axis labels should correspond to the variable names
+# below the plot, there should be a br() to add some space
+# below the space, there should be a text output that indicates the correlation 
+# between the x and y variables
 
 #####################################################################
 
@@ -25,7 +28,9 @@ ui <- fluidPage(
   ),
   mainPanel(
     br(),
-    plotOutput("scatterplot", height = "700px")
+    plotOutput("scatterplot", height = "700px"),
+    br(),
+    textOutput("correlation")
   )
 )
 
@@ -37,6 +42,10 @@ server <- function(input, output) {
       theme_minimal() +
       xlab(input$x) +
       ylab(input$y)
+  })
+  
+  output$correlation <- renderText({
+    paste("Correlation between", input$x, "and", input$y, "is", round(cor(iris[[input$x]], iris[[input$y]]), 2))
   })
 }
 

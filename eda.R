@@ -60,5 +60,10 @@ model <- glm(Species ~ Sepal.Length, data = iris, family = "binomial")
 summary(model)
 
 
+# q: how many rows are there in the data?
+# a: 150
+
+# q: what are the different species names in the dataset? 
+# a: setosa, versicolor, virginica
 
 
